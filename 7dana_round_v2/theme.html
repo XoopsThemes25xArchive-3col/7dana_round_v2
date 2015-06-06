@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<!-- Assign Theme name -->
+<{assign var=theme_name value=$xoTheme->folderName}>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}>-<{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+<script language="JavaScript1.2">
+var highlightcolor="#89929E"
+var ns6=document.getElementById&&!document.all
+var previous=''
+var eventobj
+var intended=/INPUT|TEXTAREA|SELECT|OPTION/
+function checkel(which){
+if (which.style&&intended.test(which.tagName)){
+if (ns6&&eventobj.nodeType==3)
+eventobj=eventobj.parentNode.parentNode
+return true
+}
+else
+return false
+}
+function highlight(e){
+eventobj=ns6? e.target : event.srcElement
+if (previous!=''){
+if (checkel(previous))
+previous.style.backgroundColor=''
+previous=eventobj
+if (checkel(eventobj))
+eventobj.style.backgroundColor=highlightcolor
+}
+else{
+if (checkel(eventobj))
+eventobj.style.backgroundColor=highlightcolor
+previous=eventobj
+}
+}
+</script>
+</head>
+<body> 
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="okvir"> 
+		<tr> 
+			<td>
+				<table width="100%" cellspacing="0"> 
+					<tr id="header"> 
+						<td id="headerlogo"><a href="<{$xoops_url}>/"><img src="<{$xoops_imageurl}>images/logo.png" alt="Design by 7dana.com" border="0" /></a></td> 
+						<td align="center" id="headerlogo"><{$xoops_banner}>&nbsp;</td> 
+					</tr> 
+				</table> 
+				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> 
+					<tr> 
+						<td width="21"><img src="<{$xoops_imageurl}>images/top_tab_left.gif" border="0" /></td> 
+						<td align="middle" width="100%" background="<{$xoops_imageurl}>images/top_tab_bg.gif"></td> 
+						<td width="21"><img src="<{$xoops_imageurl}>images/top_tab_right.gif" border="0" /></td> 
+					</tr> 
+				</table> 
+				<table width="100%" border="0" cellpadding="0" cellspacing="0"> 
+					<tr> 
+						<td width="220" class="headerprvi">
+						<{if $xoops_isuser}>&nbsp;&nbsp;Hello&nbsp;
+							<a href="<{$xoops_url}>/user.php"><{$xoops_uname}></a> !
+						<{else}> 
+							<form onkeyup="highlight(event)" onclick="highlight(event)" style="margin-top: 2px; margin-bottom: 0px" action="<{$xoops_url}>/user.php" method="post"> 
+								<input name="uname" onblur="if(this.value=='') this.value='Username';" onfocus="if(this.value=='Username') this.value='';" type="text" value="Username" size="10" /> 
+								<input onblur="if(this.value=='') this.value='Password';" onfocus="if(this.value=='Password') this.value='';" value="Password" name="pass" type="password" size="10" /> 
+								<input type="hidden" name="op" value="login" /> 
+								<input name="submit" type="submit" value="Login" /> 
+							</form> 
+							<{/if}>
+						</td> 
+							<td align="left" class="headercenter">
+								<{if $xoops_isuser}>
+								<{else}> 
+									<form style="margin-top: 2px; margin-bottom: 0px" action="<{$xoops_url}>/register.php" method="post"> 
+										<input name="submit" type="submit" value=" Join " /> 
+									</form> 
+								<{/if}>
+							</td> 
+							<td width="180" align="right" class="headerdrugi">
+							<form style="margin-top: 1px; margin-bottom: 0px" action="<{$xoops_url}>/search.php" method="post"> 
+								&nbsp;&nbsp; 
+								<input class="button" type="text" name="query" size="15" /> 
+								<input type="hidden" name="action" value="results" /> 
+								<input name="submit" type="submit" value="search" /> 
+							</form>
+						</td> 
+					</tr> 
+				</table> 
+				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> 
+					<tr> 
+						<td width="21"><img src="<{$xoops_imageurl}>images/bot_cat_left.gif" border="0" /></td> 
+						<td align="middle" width="100%" background="<{$xoops_imageurl}>images/bot_cat_bg.gif"></td> 
+						<td width="21"><img src="<{$xoops_imageurl}>images/bot_cat_right.gif" border="0" /></td> 
+					</tr> 
+				</table> 
+				<table border="0" cellpadding="0" cellspacing="0" id="glavna">
+					<tr>			
+						<!-- Start left blocks loop -->
+						<{if $xoops_showlblock}>
+							<td id="leftcolumn">
+							<{foreach item=block from=$xoBlocks.canvas_left}>
+								<{includeq file="$theme_name/theme_blockleft.html"}>
+							<{/foreach}>
+							<img src="<{$xoops_imageurl}>images/160.gif" width="160" height="1" alt="" />
+							</td>
+						<{/if}>
+						<!-- End left blocks loop -->
+						<td> 
+							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> 
+								<tr> 
+									<td width="21"><img src="<{$xoops_imageurl}>images/top_tab2_left.gif" border="0" /></td> 
+									<td align="middle" width="100%" background="<{$xoops_imageurl}>images/top_tab2_bg.gif"></td> 
+									<td width="21"><img src="<{$xoops_imageurl}>images/top_tab2_right.gif" border="0" /></td> 
+								</tr> 
+							</table> 
+							<table width="100%" border="0" cellspacing="0" cellpadding="0"> 
+							<tr> 
+								<td id="centercolumn">
+									<!-- Display center blocks if any -->
+									<{if $xoBlocks.page_topleft or $xoBlocks.page_topcenter or $xoBlocks.page_topright}>
+										<table cellspacing="0">
+										<tr>
+											<td id="centerCcolumn" colspan="2">
+											<!-- Start center-center blocks loop -->
+											<{foreach item=block from=$xoBlocks.page_topcenter}>
+												<{includeq file="$theme_name/theme_blockcenter_c.html"}>
+											<{/foreach}>
+											<!-- End center-center blocks loop -->
+											</td>
+										</tr>
+										<tr>
+											<td id="centerLcolumn">
+											<!-- Start center-left blocks loop -->
+											<{foreach item=block from=$xoBlocks.page_topleft}>
+												<{includeq file="$theme_name/theme_blockcenter_l.html"}>
+											<{/foreach}>
+											<!-- End center-left blocks loop -->
+											</td>
+											<td id="centerRcolumn">
+											<!-- Start center-right blocks loop -->
+											<{foreach item=block from=$xoBlocks.page_topright}>
+												<{includeq file="$theme_name/theme_blockcenter_r.html"}>
+											<{/foreach}>
+											<!-- End center-right blocks loop -->
+											</td>
+										</tr>
+										</table>
+									<{/if}>
+									<!-- End center top blocks loop -->						
+								<div id="content"><{$xoops_contents}></div> 
+									<br /> 
+
+									<!-- Start center bottom blocks loop -->
+									<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright or $xoBlocks.page_bottomcenter}>
+										<table cellspacing="0">
+										<{if $xoBlocks.page_bottomcenter}>
+											<tr>
+												<td id="bottomCcolumn" colspan="2">
+												<{foreach from=$xoBlocks.page_bottomcenter item=block}>
+													<{include file="$theme_name/theme_blockcenter_c.html"}>
+												<{/foreach}>
+												</td>
+											</tr>
+										<{/if}>
+
+										<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright}>
+											<tr>
+												<td id="bottomLcolumn">
+												<{foreach from=$xoBlocks.page_bottomleft item=block}>
+													<{include file="$theme_name/theme_blockcenter_l.html"}>
+												<{/foreach}>
+												</td>
+
+												<td id="bottomRcolumn">
+												<{foreach from=$xoBlocks.page_bottomright item=block}>
+													<{include file="$theme_name/theme_blockcenter_r.html"}>
+												<{/foreach}>
+												</td>
+											</tr>
+										<{/if}>
+										</table>
+									<{/if}>
+									<!-- End center bottom blocks loop -->					
+					
+								</td> 
+							</tr> 
+						</table> 
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> 
+							<tr> 
+								<td width="21"><img src="<{$xoops_imageurl}>images/bot_cat2_left.gif" border="0" /></td> 
+								<td align="middle" width="100%" background="<{$xoops_imageurl}>images/bot_cat2_bg.gif"></td> 
+								<td width="21"><img src="<{$xoops_imageurl}>images/bot_cat2_right.gif" border="0" /></td> 
+							</tr> 
+						</table>
+					</td> 
+					<{if $xoops_showrblock}>
+					<td id="rightcolumn">
+					<!-- Start right blocks loop -->
+					<{foreach item=block from=$xoBlocks.canvas_right}>
+						<{includeq file="$theme_name/theme_blockright.html"}>
+					<{/foreach}>
+					<!-- End right blocks loop -->
+					<img src="<{$xoops_imageurl}>images/160.gif" width="160" height="1" alt="" />
+					</td>
+					<{/if}>
+				</tr> 
+				<tr> 
+					<td colspan="3"></td> 
+				</tr> 
+			</table> 
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> 
+				<tr> 
+					<td width="21"><img src="<{$xoops_imageurl}>images/top_tab_left.gif" border="0" /></td> 
+					<td align="middle" width="100%" background="<{$xoops_imageurl}>images/top_tab_bg.gif"></td> 
+					<td width="21"><img src="<{$xoops_imageurl}>images/top_tab_right.gif" border="0" /></td> 
+				</tr> 
+			</table> 
+			<table cellspacing="0" cellpadding="0" width="100%" border="0"> 
+				<tr align="center"> 
+					<td align="center" bgcolor="#89929E" class="privatnost">Copyright © 2005 by <a href="<{$xoops_url}>" target="_self"> The XOOPS Foundation </a>&nbsp; | &nbsp;<{$xoops_footer}> &nbsp;| &nbsp;<!-- Webmaster, dont remove this text. It denied by license! --> Design by <a href="http://www.7dana.com" target="_blank">7dana.com</a></td> 
+				</tr> 
+			</table> 
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"> 
+				<tr> 
+					<td width="21"><img src="<{$xoops_imageurl}>images/bot_cat_left.gif" border="0" /></td> 
+					<td align="middle" width="100%" background="<{$xoops_imageurl}>images/bot_cat_bg.gif"></td> 
+					<td width="21"><img src="<{$xoops_imageurl}>images/bot_cat_right.gif" border="0" /></td> 
+				</tr> 
+			</table>
+		</td> 
+	</tr> 
+</table> 
+<br> 
+</body>
+</html>
